@@ -9,25 +9,9 @@ pipeline {
             }
         }
 
-        stage('Build Applications') {
+        stage('Docker Check') {
             steps {
-                echo 'Building application components...'
-
-                dir('frontend') {
-                    bat 'npm install'
-                }
-
-                dir('product-service') {
-                    bat 'npm install'
-                }
-
-                dir('order-service') {
-                    bat 'npm install'
-                }
-
-                dir('inventory-service') {
-                    bat 'npm install'
-                }
+                bat 'docker --version'
             }
         }
 
@@ -39,6 +23,5 @@ pipeline {
                 bat 'docker build -t ecommerce-inventory-service ./inventory-service'
             }
         }
-
     }
 }
